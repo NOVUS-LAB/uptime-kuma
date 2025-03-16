@@ -21,7 +21,8 @@
                         :key="key"
                         :to="`/settings/${key}`"
                     >
-                        <div class="menu-item">
+                        <div class="menu-item" :class="{ 'user-management-item': key === 'user-management' }">
+                            <font-awesome-icon v-if="key === 'user-management'" icon="users" class="me-2" />
                             {{ item.title }}
                         </div>
                     </router-link>
@@ -82,7 +83,7 @@ export default {
         },
 
         subMenus() {
-            return {
+            const menus = {
                 general: {
                     title: this.$t("General"),
                 },
@@ -116,13 +117,17 @@ export default {
                 proxies: {
                     title: this.$t("Proxies"),
                 },
-                "user-management": {
-                    title: this.$t("User Management"),
-                },
                 about: {
                     title: this.$t("About"),
                 },
             };
+            
+            // Show User Management for all users
+            menus["user-management"] = {
+                title: this.$t("User Management"),
+            };
+            
+            return menus;
         },
     },
 
@@ -316,5 +321,14 @@ footer {
 
 .logout {
     color: $danger !important;
+}
+
+.user-management-item {
+    font-weight: bold;
+    border-left: 3px solid $primary;
+    
+    .dark & {
+        border-left: 3px solid $primary;
+    }
 }
 </style>

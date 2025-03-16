@@ -32,7 +32,7 @@ const Security = () => import("./components/settings/Security.vue");
 import Proxies from "./components/settings/Proxies.vue";
 import About from "./components/settings/About.vue";
 import RemoteBrowsers from "./components/settings/RemoteBrowsers.vue";
-import UserManagement from "./components/UserManagement.vue";
+import UserManagement from "./components/settings/UserManagement.vue";
 
 const routes = [
     {
