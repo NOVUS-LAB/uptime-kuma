@@ -138,6 +138,7 @@ const { databaseSocketHandler } = require("./socket-handlers/database-socket-han
 const { remoteBrowserSocketHandler } = require("./socket-handlers/remote-browser-socket-handler");
 const TwoFA = require("./2fa");
 const StatusPage = require("./model/status_page");
+const { userSocketHandler } = require("./socket-handlers/user-socket-handler");
 const { cloudflaredSocketHandler, autoStart: cloudflaredAutoStart, stop: cloudflaredStop } = require("./socket-handlers/cloudflared-socket-handler");
 const { proxySocketHandler } = require("./socket-handlers/proxy-socket-handler");
 const { dockerSocketHandler } = require("./socket-handlers/docker-socket-handler");
@@ -1573,6 +1574,7 @@ let needSetup = false;
         maintenanceSocketHandler(socket);
         apiKeySocketHandler(socket);
         remoteBrowserSocketHandler(socket);
+        userSocketHandler(socket);
         generalSocketHandler(socket, server);
         chartSocketHandler(socket);
 

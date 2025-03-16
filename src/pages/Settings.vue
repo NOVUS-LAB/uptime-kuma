@@ -116,6 +116,9 @@ export default {
                 proxies: {
                     title: this.$t("Proxies"),
                 },
+                "user-management": {
+                    title: this.$t("User Management"),
+                },
                 about: {
                     title: this.$t("About"),
                 },
