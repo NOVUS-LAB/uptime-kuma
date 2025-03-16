@@ -25,15 +25,6 @@
                     </div>
                 </div>
 
-                <!-- Footer Text -->
-                <div class="my-3">
-                    <label for="footer-text" class="form-label">{{ $t("Footer Text") }}</label>
-                    <textarea id="footer-text" v-model="config.footerText" class="form-control" data-testid="footer-text-input"></textarea>
-                    <div class="form-text">
-                        {{ $t("markdownSupported") }}
-                    </div>
-                </div>
-
                 <div class="my-3">
                     <label for="auto-refresh-interval" class="form-label">{{ $t("Refresh Interval") }}</label>
                     <input id="auto-refresh-interval" v-model="config.autoRefreshInterval" type="number" class="form-control" :min="5" data-testid="refresh-interval-input">
@@ -54,12 +45,6 @@
                 <div class="my-3 form-check form-switch">
                     <input id="showTags" v-model="config.showTags" class="form-check-input" type="checkbox" data-testid="show-tags-checkbox">
                     <label class="form-check-label" for="showTags">{{ $t("Show Tags") }}</label>
-                </div>
-
-                <!-- Show Powered By -->
-                <div class="my-3 form-check form-switch">
-                    <input id="show-powered-by" v-model="config.showPoweredBy" class="form-check-input" type="checkbox" data-testid="show-powered-by-checkbox">
-                    <label class="form-check-label" for="show-powered-by">{{ $t("Show Powered By") }}</label>
                 </div>
 
                 <!-- Show certificate expiry -->
@@ -332,17 +317,6 @@
             </div>
 
             <footer class="mt-5 mb-4">
-                <div class="custom-footer-text text-start">
-                    <strong v-if="enableEditMode">{{ $t("Custom Footer") }}:</strong>
-                </div>
-                <Editable v-if="enableEditMode" v-model="config.footerText" tag="div" :contenteditable="enableEditMode" :noNL="false" class="alert-heading p-2" data-testid="custom-footer-editable" />
-                <!-- eslint-disable-next-line vue/no-v-html-->
-                <div v-if="! enableEditMode" class="alert-heading p-2" data-testid="footer-text" v-html="footerHTML"></div>
-
-                <p v-if="config.showPoweredBy" data-testid="powered-by">
-                    {{ $t("Powered by") }} <a target="_blank" rel="noopener noreferrer" href="https://github.com/louislam/uptime-kuma">{{ $t("Uptime Kuma" ) }}</a>
-                </p>
-
                 <div class="refresh-info mb-2">
                     <div>{{ $t("Last Updated") }}:  {{ lastUpdateTimeDisplay }}</div>
                     <div data-testid="update-countdown-text">{{ $tc("statusPageRefreshIn", [ updateCountdownText]) }}</div>
@@ -589,14 +563,6 @@ export default {
         descriptionHTML() {
             if (this.config.description != null) {
                 return DOMPurify.sanitize(marked(this.config.description));
-            } else {
-                return "";
-            }
-        },
-
-        footerHTML() {
-            if (this.config.footerText != null) {
-                return DOMPurify.sanitize(marked(this.config.footerText));
             } else {
                 return "";
             }
